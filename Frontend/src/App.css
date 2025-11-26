@@ -1,0 +1,33 @@
+body{
+  background-color: rgb(222, 182, 188);
+}
+
+.App{
+  width: fit-content;
+}
+div{
+ width: 95% !important;
+ height: 100% !important;
+}
+
+.dashboardHeader{
+  display: flex;
+  background-color: white;
+  margin: 1%;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 3%;
+  box-shadow: inset;
+}
+
+.features {
+  margin: 1rem;
+}
+
+.featuresHead{
+  display: flex;
+}
+
+textarea{
+  background-color: white;
+}
