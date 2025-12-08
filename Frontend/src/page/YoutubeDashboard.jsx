@@ -40,7 +40,7 @@ export default function YouTubeDashboard() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(`${API_URL}/video`);
+      const res = await fetch(`${API_URL}/api/video`);
       if (!res.ok) throw new Error('Failed to load video');
       const data = await res.json();
       setVideo(data);
