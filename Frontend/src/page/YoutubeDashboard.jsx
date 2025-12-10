@@ -40,7 +40,7 @@ export default function YouTubeDashboard() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(`${API_URL}/video`);
+      const res = await fetch(`${API_URL}/api/video`);
       if (!res.ok) throw new Error('Failed to load video');
       const data = await res.json();
       setVideo(data);
@@ -56,7 +56,7 @@ export default function YouTubeDashboard() {
 
   const fetchComments = async () => {
     try {
-      const res = await fetch(`${API_URL}/comments`);
+      const res = await fetch(`${API_URL}/api/comments`);
       if (!res.ok) throw new Error('Comments endpoint error');
       const data = await res.json();
       // Force array even if backend returns { error: ... }
@@ -70,7 +70,7 @@ export default function YouTubeDashboard() {
 
   const fetchNotes = async () => {
     try {
-      const res = await fetch(`${API_URL}/notes`);
+      const res = await fetch(`${API_URL}/api/notes`);
       if (!res.ok) throw new Error('Notes endpoint error');
       const data = await res.json();
       setNotes(Array.isArray(data) ? data : []);
@@ -85,7 +85,7 @@ export default function YouTubeDashboard() {
   // ──────────────────────────────────────────────────────────────
   const updateVideo = async () => {
     try {
-      await fetch(`${API_URL}/video`, {
+      await fetch(`${API_URL}/api/video`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title: editTitle, description: editDescription }),
@@ -112,7 +112,7 @@ export default function YouTubeDashboard() {
   if (!newComment.trim()) return;
   
   try {
-    const res = await fetch(`${API_URL}/comments`, {
+    const res = await fetch(`${API_URL}/api/comments`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ text: newComment }),
@@ -138,7 +138,7 @@ export default function YouTubeDashboard() {
 
   const replyToComment = async (commentId) => {
     if (!replyText.trim()) return;
-    await fetch(`${API_URL}/comments/${commentId}/reply`, {
+    await fetch(`${API_URL}/api/comments/${commentId}/reply`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ text: replyText }),
@@ -149,13 +149,13 @@ export default function YouTubeDashboard() {
   };
 
   const deleteComment = async (commentId) => {
-    await fetch(`${API_URL}/comments/${commentId}`, { method: 'DELETE' });
+    await fetch(`${API_URL}/api/comments/${commentId}`, { method: 'DELETE' });
     fetchComments();
   };
 
   const addNote = async () => {
     if (!newNote.trim()) return;
-    await fetch(`${API_URL}/notes`, {
+    await fetch(`${API_URL}/api/notes`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ content: newNote }),
@@ -165,7 +165,7 @@ export default function YouTubeDashboard() {
   };
 
   const deleteNote = async (noteId) => {
-    await fetch(`${API_URL}/notes/${noteId}`, { method: 'DELETE' });
+    await fetch(`${API_URL}/api/notes/${noteId}`, { method: 'DELETE' });
     fetchNotes();
   };
 
