@@ -22,7 +22,7 @@ console.log('========================');
 
 // CORS Configuration
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  origin: process.env.FRONTEND_URL,
   credentials: true, // Allow cookies if needed
   optionsSuccessStatus: 200
 };
